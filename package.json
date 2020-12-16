@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "local": "ts-node-dev --respawn --files src/server.ts"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "morgan": "^1.10.0"
