@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { sign } from 'jsonwebtoken';
 
-import { encryptCredential, validateCredential } from '../utils/auth';
+import { encryptCredential, validateCredential, verifyAccessToken } from '../utils/auth';
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -116,4 +116,33 @@ export const login = async (req, res, next) => {
     token: token,
     message: 'User found & Logged in',
   });
+};
+
+export const authenticateJWT = async (req, res, next) => {
+  const validated: any = await verifyAccessToken(req);
+
+  if (!validated?.id) return next(); // accessToken is incorrect
+
+  const user = await prisma.user.findFirst({
+    where: {
+      id: validated.id,
+    },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      ip: true,
+      userAgent: true,
+      verified: true,
+      lastSignedIn: true,
+      createdAt: true,
+      updatedAt: true,
+      deletedAt: true,
+    },
+  });
+
+  if (user) {
+    req.user = user;
+  }
+  next();
 };

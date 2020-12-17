@@ -1,5 +1,8 @@
 import bcrypt from 'bcrypt';
 
+import { verify } from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.JWT_SECRET;
 const SALT_ROUND = 10;
 
 export const encryptCredential = async (password: string): Promise<string> =>
@@ -26,3 +29,18 @@ export const validateCredential = async (
       resolve(res);
     });
   });
+
+export const verifyAccessToken = async (req) => {
+  let accessToken: string;
+
+  if (req.headers.authorization) {
+    accessToken = req.headers.authorization.replace('Bearer ', '');
+  } else if (req.signedCookies.accessToken) {
+    accessToken = req.signedCookies.accessToken;
+  }
+
+  if (accessToken) {
+    const validated = verify(accessToken, JWT_SECRET);
+    return validated;
+  }
+};
