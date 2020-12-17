@@ -8,7 +8,8 @@
     "generate": "prisma generate",
     "migrate:dev": "prisma migrate dev --preview-feature",
     "migrate:deploy": "prisma migrate deploy --preview-feature",
-    "migrate:reset": "prisma migrate reset --preview-feature"
+    "migrate:reset": "prisma migrate reset --preview-feature",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx"
   },
   "dependencies": {
     "@prisma/client": "^2.13.0",
