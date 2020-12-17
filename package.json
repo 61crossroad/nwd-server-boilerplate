@@ -7,7 +7,8 @@
     "local": "ts-node-dev --respawn --files src/server.ts",
     "generate": "prisma generate",
     "migrate:save": "prisma migrate dev --preview-feature",
-    "migrate": "prisma migrate deploy --preview-feature"
+    "migrate": "prisma migrate deploy --preview-feature",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx"
   },
   "dependencies": {
     "@prisma/client": "^2.18.0",
