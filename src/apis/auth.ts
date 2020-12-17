@@ -1,7 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 import { sign } from 'jsonwebtoken';
 
-import { encryptCredential, validateCredential, verifyAccessToken } from '../utils/auth';
+import {
+  encryptCredential,
+  validateCredential,
+  verifyAccessToken,
+} from '../utils/auth';
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET;

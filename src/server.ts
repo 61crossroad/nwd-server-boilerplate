@@ -3,8 +3,8 @@ import cookieParser from 'cookie-parser';
 import express from 'express';
 import morgan from 'morgan';
 
-import routes from './routes';
 import { authenticateJWT } from './apis/auth';
+import routes from './routes';
 
 const app = express();
 const port = 8000;
