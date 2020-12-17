@@ -1,16 +1,16 @@
 import express from 'express';
 
 import {
-  createUser,
   deleteUser,
   getUsers,
   getUser,
   updateUser,
 } from './apis/user';
+import { signUp } from './apis/auth';
 
 const router = express.Router();
 
-router.post('/user', createUser);
+router.post('/signup', signUp);
 router.get('/user', getUsers);
 router.get('/user/:userId', getUser);
 router.put('/user/:userId', updateUser);
