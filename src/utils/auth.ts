@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-
 import { verify } from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -19,7 +18,7 @@ export const encryptCredential = async (password: string): Promise<string> =>
 
 export const validateCredential = async (
   value: string,
-  hashedValue: string
+  hashedValue: string,
 ): Promise<boolean> =>
   new Promise<boolean>((resolve, reject) => {
     bcrypt.compare(value, hashedValue, (err, res) => {

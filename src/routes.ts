@@ -1,11 +1,7 @@
 import express from 'express';
 
-import {
-  deleteUser,
-  getUser,
-  updateUser,
-} from './apis/user';
 import { login, signUp } from './apis/auth';
+import { deleteUser, getUser, updateUser } from './apis/user';
 
 const router = express.Router();
 
