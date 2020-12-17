@@ -6,11 +6,15 @@ import {
   getUser,
   updateUser,
 } from './apis/user';
-import { signUp } from './apis/auth';
+import { login, signUp } from './apis/auth';
 
 const router = express.Router();
 
+// auth
 router.post('/signup', signUp);
+router.post('/login', login);
+
+// user
 router.get('/user', getUsers);
 router.get('/user/:userId', getUser);
 router.put('/user/:userId', updateUser);
