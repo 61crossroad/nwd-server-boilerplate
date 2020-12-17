@@ -4,7 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "local": "ts-node-dev --respawn --files src/server.ts"
+    "local": "ts-node-dev --respawn --files src/server.ts",
+    "generate": "prisma generate",
+    "migrate:dev": "prisma migrate dev --preview-feature",
+    "migrate:deploy": "prisma migrate deploy --preview-feature",
+    "migrate:reset": "prisma migrate reset --preview-feature"
   },
   "dependencies": {
     "express": "^4.17.1",
