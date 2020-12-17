@@ -13,3 +13,16 @@ export const encryptCredential = async (password: string): Promise<string> =>
       resolve(hash);
     });
   });
+
+export const validateCredential = async (
+  value: string,
+  hashedValue: string
+): Promise<boolean> =>
+  new Promise<boolean>((resolve, reject) => {
+    bcrypt.compare(value, hashedValue, (err, res) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(res);
+    });
+  });
