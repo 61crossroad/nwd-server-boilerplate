@@ -23,21 +23,6 @@ export const getUser = async (req, res) => {
   });
 };
 
-export const createUser = async (req, res) => {
-  const { email, name } = req.body.data;
-
-  const user = await prisma.user.create({
-    data: {
-      email,
-      name,
-    },
-  });
-
-  return res.status(200).send({
-    user,
-  });
-};
-
 export const updateUser = async (req, res) => {
   const { userId } = req.params;
   const { email, name } = req.body.data;
