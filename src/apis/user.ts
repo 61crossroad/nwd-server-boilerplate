@@ -2,14 +2,6 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const getUsers = async (req, res) => {
-  const users = await prisma.user.findMany();
-
-  return res.status(200).send({
-    users,
-  });
-};
-
 export const getUser = async (req, res) => {
   const { userId } = req.params;
   const user = await prisma.user.findUnique({
