@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import express from 'express';
 import morgan from 'morgan';
 
@@ -9,6 +10,7 @@ const port = 8000;
 
 app.use(morgan('dev')); // Log every request to the console
 
+app.use(cookieParser(process.env.COOKIE_SECRET)); //  Read cookies (* secret parameter is used when signing cookie)
 app.use(bodyParser.json()); // Parsing json objects
 app.use(bodyParser.urlencoded({ extended: true })); // Parsing bodies from URL
 
