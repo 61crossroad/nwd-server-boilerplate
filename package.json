@@ -4,10 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "local": "ts-node-dev --respawn --files src/server.ts",
+    "local": "cross-env NODE_ENV=local dotenv -e .env.local -- ts-node-dev --respawn --files src/server.ts",
+    "dev": "cross-env NODE_ENV=development dotenv -e .env.dev -- ts-node-dev --respawn --files src/server.ts",
+    "start:local": "cross-env NODE_ENV=local dotenv -e .env.local -- node dist/server.js",
+    "start:dev": "cross-env NODE_ENV=development dotenv -e .env.dev -- node dist/server.js",
+    "start:prod": "node dist/server.js",
+    "tsc": "tsc",
     "generate": "prisma generate",
-    "migrate:save": "prisma migrate dev --preview-feature",
-    "migrate": "prisma migrate deploy --preview-feature",
+    "migrate:save": "dotenv -e .env.local -- prisma migrate dev --preview-feature",
+    "migrate": "dotenv -e .env.local -- prisma migrate deploy --preview-feature",
+    "migrate:dev": "dotenv -e .env.dev -- prisma migrate deploy --preview-feature",
+    "migrate:prod": "dotenv -e .env -- prisma migrate deploy --preview-feature",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx"
   },
   "dependencies": {
