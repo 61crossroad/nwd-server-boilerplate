@@ -123,7 +123,7 @@ export const login = async (req, res, next) => {
 };
 
 export const authenticateJWT = async (req, res, next) => {
-  const validated: any = await verifyAccessToken(req);
+  const validated: any = await verifyAccessToken(req, res);
 
   if (!validated?.id) return next(); // accessToken is incorrect
 
