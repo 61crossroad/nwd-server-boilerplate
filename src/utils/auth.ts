@@ -29,7 +29,7 @@ export const validateCredential = async (
     });
   });
 
-export const verifyAccessToken = async (req) => {
+export const verifyAccessToken = async (req, res) => {
   let accessToken: string;
 
   if (req.headers.authorization) {
@@ -39,7 +39,17 @@ export const verifyAccessToken = async (req) => {
   }
 
   if (accessToken) {
-    const validated = verify(accessToken, JWT_SECRET);
+    let validated;
+    try {
+      validated = verify(accessToken, JWT_SECRET);
+      return validated;
+    } catch (err) {
+      return res.status(400).send({
+        error: 'invalidToken',
+        message: `${err}`,
+      });
+    }
+
     return validated;
   }
 };
